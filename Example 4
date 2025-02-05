@@ -1,0 +1,88 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function to get the meaning of the month
+string getMonthMeaning(int month) {
+    switch (month) {
+        case 1: return "January means Janus";
+        case 2: return "February means Februa";
+        case 3: return "March means Mars";
+        case 4: return "April means Aphrodite";
+        case 5: return "May means Maia";
+        case 6: return "June means Juno";
+        case 7: return "July means Julius Caesar";
+        case 8: return "August means Augustus";
+        case 9: return "September means Septem (seven)";
+        case 10: return "October means Octo (eight)";
+        case 11: return "November means Novem (nine)";
+        case 12: return "December means Decem (ten)";
+        default: return "Invalid month";
+    }
+}
+
+// Function to get the meaning of the day
+string getDayMeaning(int day) {
+    if (day >= 1 && day <= 31) {
+        return "The " + to_string(day) + "th means Self-Started"; // Simplified for example
+    } else {
+        return "Invalid day";
+    }
+}
+
+// Function to get the meaning of the year
+string getYearMeaning(int year) {
+    if (year >= 2000 && year <= 2023) {
+        if (year >= 2000 && year <= 2005) {
+            return "The year of " + to_string(year) + " means you are a millennial";
+        } else if (year >= 2006 && year <= 2023) {
+            return "The year of " + to_string(year) + " means you are Gen Z";
+        }
+    } else {
+        return "Invalid year";
+    }
+    return "";
+}
+
+int main() {
+    char tryAgain = 'Y';
+
+    cout << "Welcome to Birthday Date Meaning Generator!" << endl;
+
+    while (tryAgain == 'Y' || tryAgain == 'y') {
+        int month, day, year;
+
+        // Ask user for input
+        cout << "Please enter the month of your birthday (1-12): ";
+        cin >> month;
+
+        cout << "Please enter the day of your birthday (1-31): ";
+        cin >> day;
+
+        cout << "Please enter the year of your birthday (2000-2023): ";
+        cin >> year;
+
+        // Validate inputs
+        if (month < 1 || month > 12 || day < 1 || day > 31 || year < 2000 || year > 2023) {
+            cout << "Invalid input. Please try again." << endl;
+            continue;
+        }
+
+        // Get meanings
+        string monthMeaning = getMonthMeaning(month);
+        string dayMeaning = getDayMeaning(day);
+        string yearMeaning = getYearMeaning(year);
+
+        // Display results
+        cout << monthMeaning << endl;
+        cout << dayMeaning << endl;
+        cout << yearMeaning << endl;
+
+        // Ask user if they want to try again
+        cout << "Would you like to try another one? (Y/N): ";
+        cin >> tryAgain;
+    }
+
+    cout << "Thanks for playing!" << endl;
+    return 0;
+}
